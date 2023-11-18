@@ -1,0 +1,36 @@
+@import "../../base/bootstrap-extended.scss";
+@import "../../base/components/include";
+
+.timesheet-details-table {
+    .table {
+        border: 1px solid $input-border-color;
+        thead {
+            tr {
+                th {
+                    padding: 0.40rem 2rem;
+                    color: $black;
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+            }
+        }
+        tbody {
+            tr {
+                th, td {
+                    color: $black;
+                    font-size: 14px;
+                    padding: 1rem 2rem;
+                }
+                &:last-child {
+                    th {
+                        background-color: $gray-50;
+                        padding: 0.40rem 2rem;
+                        font-size: 13px;
+                        font-weight: 600;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+    }
+}

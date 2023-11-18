@@ -1,0 +1,172 @@
+@import '../bootstrap-extended/include'; // Bootstrap includes
+@import '../components/include'; // Components includes
+
+$auth-1-inner-max-width: 380px !default;
+
+.auth-wrapper {
+  display: flex;
+  flex-basis: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+
+  .auth-inner {
+    width: 100%;
+  }
+
+  &.auth-basic {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; // For v1 scroll for long auth form
+    .auth-inner {
+      position: relative;
+      &:before {
+        width: 238px;
+        height: 238px;
+        content: ' ';
+        position: absolute;
+        top: -70px;
+        left: -45px;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjM4IiBoZWlnaHQ9IjIzNCIgdmlld0JveD0iMCAwIDIzOCAyMzQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cmVjdCB4PSI4Ny45Mzk1IiB5PSIwLjcwMDE5NSIgd2lkdGg9IjE0OSIgaGVpZ2h0PSIxNDkiIHJ4PSIxOS41IiBzdHJva2U9IiNFNzFGMkQiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+DQo8cmVjdCB5PSIzMy43NjA3IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjEwIiBmaWxsPSIjRTcxRjJEIiBmaWxsLW9wYWNpdHk9IjAuMDgiLz4NCjwvc3ZnPg0K');
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+      &:after {
+        width: 180px;
+        height: 180px;
+        content: ' ';
+        position: absolute;
+        bottom: -55px;
+        right: -60px;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iMTc4IiBoZWlnaHQ9IjE3OCIgcng9IjE5IiBzdHJva2U9IiNGNkI4MTYiIHN0cm9rZS1vcGFjaXR5PSIwLjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iOCA4Ii8+DQo8cmVjdCB4PSIyMi41IiB5PSIyMi41IiB3aWR0aD0iMTM1IiBoZWlnaHQ9IjEzNSIgcng9IjEwIiBmaWxsPSIjRjZCODE2IiBmaWxsLW9wYWNpdHk9IjAuMiIvPg0KPC9zdmc+DQo=');
+        z-index: -1;
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.auth-cover {
+    align-items: flex-start;
+    .auth-inner {
+      height: 100vh;
+      overflow-y: auto; // For v2 scroll for long auth form
+      height: calc(var(--vh, 1vh) * 100);
+    }
+    .brand-logo {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      margin: 0;
+      z-index: 1;
+      justify-content: unset;
+    }
+  }
+
+  &.auth-basic .auth-inner {
+    max-width: $auth-1-inner-max-width;
+  }
+
+  .brand-logo {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem 0;
+    .brand-text {
+      font-weight: 600;
+    }
+  }
+
+  .auth-footer-btn {
+    .btn {
+      padding: 0.6rem !important;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  // two steps verification
+  .auth-input {
+    max-width: 50px;
+    padding-right: 0.571rem;
+    padding-left: 0.571rem;
+  }
+
+  // multi-steps register
+  .custom-options-checkable {
+    .plan-price {
+      .pricing-value {
+        font-size: 3rem;
+      }
+      sup {
+        top: -1.5rem;
+        left: 0.2rem;
+      }
+      sub {
+        bottom: 0;
+        right: 0.14rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .auth-wrapper {
+    &.auth-cover .auth-card {
+      width: $auth-1-inner-max-width;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .auth-wrapper.auth-cover .brand-logo {
+    left: 1.5rem;
+    padding-left: 0;
+  }
+}
+
+.auth-wrapper .auth-bg {
+  background-color: $white;
+}
+
+.dark-layout {
+  .auth-wrapper .auth-bg {
+    background-color: $theme-dark-card-bg;
+  }
+}
+
+// Auth pages for mobile and small height & width screen
+@media (max-height: 825px) and (max-width: 991.98px) {
+  .dark-layout {
+    .auth-wrapper .auth-inner {
+      background-color: $theme-dark-card-bg;
+    }
+  }
+  .auth-wrapper {
+    .auth-bg {
+      padding-top: 3rem;
+      margin: auto 0;
+    }
+    .auth-inner {
+      background-color: $white;
+    }
+    &.auth-cover {
+      .auth-inner {
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+      .brand-logo {
+        position: relative;
+        left: 0;
+        padding-left: 1.5rem;
+      }
+    }
+  }
+}
