@@ -29,6 +29,8 @@ const AppSelect = ({
   tooltip,
   options,
   isGroup,
+  isLoading,
+  isDisabled,
   className,
   ...rest
 }) => {
@@ -60,6 +62,7 @@ const AppSelect = ({
                 </InputGroupText>
               ) : null}
               <Select
+
                 {...rest}
                 {...field}
                 theme={selectThemeColors}
@@ -71,6 +74,7 @@ const AppSelect = ({
                 defaultValue={value ?? null}
                 formatGroupLabel={isGroup ? formatGroupLabel : undefined}
                 options={options}
+                isDisabled={isDisabled}
                 loadingMessage={() => (
                   <Spinner color="primary" size="md" type="grow" />
                 )}
@@ -81,6 +85,7 @@ const AppSelect = ({
                   field.onChange(option);
                   if (onChangeEvent) onChangeEvent(option ? option : null);
                 }}
+                isLoading={isLoading ? isLoading : false}
               />
             </div>
             {error && (
@@ -117,6 +122,8 @@ AppSelect.propTypes = {
     })
   ),
   isGroup: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 };
 
 export default AppSelect;

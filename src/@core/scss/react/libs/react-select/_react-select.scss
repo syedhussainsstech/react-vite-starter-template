@@ -1,7 +1,14 @@
 @import '../../../base/bootstrap-extended/include';
 @import '../../../base/components/include';
 
+body .select__menu-portal {
+  z-index: 9999;
+}
 // Z-index for Boostrap Modal
+body .select__menu-portal {
+  // z-index: 13;
+}
+
 .modal-open {
   .select__menu-portal {
     z-index: 1051;
@@ -25,11 +32,12 @@
   }
   .select__control {
     border-color: $input-border-color;
-    // .select__indicators {
-    //   .select__indicator.select__clear-indicator {
-    //     padding: 8px 5px 8px 0px;
-    //   }
-    // }
+    .select__indicators {
+      .select__indicator.select__clear-indicator {
+        // padding: 8px 5px 8px 0px;
+        padding: 8px 2px;
+      }
+    }
   }
 }
 .select__control,

@@ -6,6 +6,7 @@ import filterFactory from "react-bootstrap-table2-filter";
 import classNames from "classnames";
 
 import "@styles/react/libs/tables/react-bootstrap-table.scss";
+import { FormGroup, Input, Label } from "reactstrap";
 
 const customTotal = (from, to, size) => (
   <span className="pagination-total ms-2">
@@ -25,6 +26,8 @@ const ReactDataTable = ({
   selected = [],
   className,
   responsive,
+  rowStyle,
+  noTableStriped = true,
   ...rest
 }) => {
   const node = useRef();
@@ -34,8 +37,8 @@ const ReactDataTable = ({
   // console.log(selected, selectedItem)
 
   // useEffect(() => {
-  //   setSelectedItem(selected)
-  // }, [selected])
+  //   setSelection(selected)
+  // }, [selectedItem])
 
   const handleOnSelect = (row, isSelect, rowIndex, { shiftKey, ctrlKey }) => {
     if (type === "multi") {
@@ -57,7 +60,7 @@ const ReactDataTable = ({
               mappedData = data
                 .map((v, i) =>
                   (i <= rowIndex || i <= lastIndex[0]) &&
-                  (i >= lastIndex[0] || i >= lastIndex[0])
+                    (i >= lastIndex[0] || i >= lastIndex[0])
                     ? v.id
                     : null
                 )
@@ -70,7 +73,7 @@ const ReactDataTable = ({
               mappedData = data
                 .map((v, i) =>
                   (i >= rowIndex || i >= lastIndex[0]) &&
-                  (i <= lastIndex[0] || i <= lastIndex[0])
+                    (i <= lastIndex[0] || i <= lastIndex[0])
                     ? v.id
                     : null
                 )
@@ -130,16 +133,45 @@ const ReactDataTable = ({
 
   const selectRow = {
     mode: type === "single" ? "radio" : "checkbox",
-    clickToSelect: type !== undefined ? true : false,
+    // clickToSelect: type !== undefined ? true : false,
     // bgColor: "#000",
     classes: "selected",
-    hideSelectColumn: true,
+    hideSelectColumn: type !== undefined ? false : true,
     hideSelectAll: true,
     clickToEdit: true,
     selected: selectedItem,
     multipleSelectRow: true,
-    onSelect: handleOnSelect,
-    // onSelectAll: () => {
+    selectionHeaderRenderer: ({ indeterminate, ...rest }) => (
+      <FormGroup check className="form-check-primary">
+        <Input
+          {...rest}
+          type="checkbox"
+          ref={(input) => {
+            if (input) input.indeterminate = indeterminate;
+          }}
+        />
+      </FormGroup>
+    ),
+    selectionRenderer: ({ mode, ...rest }) => (
+      <FormGroup
+        check={mode}
+        className="form-check-primary"
+      >
+        <Input {...rest} type="checkbox" />
+      </FormGroup>
+    ),
+    onSelect: (row, isSelect) => {
+      if (isSelect) {
+        setSelectedItem([...selectedItem, row.Id]);
+        setSelection([...selectedItem, row.Id])
+      } else {
+        setSelectedItem(selectedItem.filter(x => x !== row.Id));
+        setSelection(selectedItem.filter(x => x !== row.Id));
+      }
+    },
+    // onSelectAll: (isSelect, rows) => {
+    //   const ids = rows.map(r => r.id);
+    //   setSelectedItem(isSelect ? ids : []);
     // }
   };
 
@@ -186,14 +218,16 @@ const ReactDataTable = ({
         {...rest}
         ref={node}
         bordered={false}
-        classes={className}
+        classes={`${noTableStriped ? 'table-striped ' : ''}${className ?? ''}`}
         bootstrap4
         data={data}
         columns={columns}
+        selectRow={selectRow}
         noDataIndication={"No Records Found"}
         pagination={pagination !== null ? paginationFactory(options) : null}
         defaultSorted={sort}
         filter={filterFactory()}
+        rowStyle={rowStyle}
       />
     </div>
   );
@@ -205,6 +239,7 @@ ReactDataTable.propTypes = {
   data: PropTypes.array.isRequired,
   columns: PropTypes.array,
   responsive: PropTypes.bool,
+  noTableStriped: PropTypes.bool,
   // columns: PropTypes.arrayOf(
   //     PropTypes.exact({
   //         isDummyField: PropTypes.bool,
@@ -213,7 +248,7 @@ ReactDataTable.propTypes = {
   //         hidden: PropTypes.bool
   //     })
   // ).isRequired,
-  type: PropTypes.oneOf(["single", "multiple"]),
+  type: PropTypes.oneOf(["single", "multi"]),
   sort: PropTypes.arrayOf(
     PropTypes.exact({
       dataField: PropTypes.any,
@@ -224,6 +259,7 @@ ReactDataTable.propTypes = {
   selected: PropTypes.array,
   pagination: PropTypes.any,
   className: PropTypes.string,
+  rowStyle: PropTypes.func,
 };
 
 export default ReactDataTable;

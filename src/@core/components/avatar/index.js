@@ -125,7 +125,8 @@ Avatar.propTypes = {
     "light-danger",
     "light-info",
     "light-warning",
-    "light-dark"
+    "light-dark",
+    "light-pending"
   ]),
   color: PropTypes.oneOf([
     "primary",
@@ -141,7 +142,8 @@ Avatar.propTypes = {
     "light-danger",
     "light-info",
     "light-warning",
-    "light-dark"
+    "light-dark",
+    "light-pending"
   ]),
   initials(props) {
     if (props["initials"] && props["content"] === undefined) {

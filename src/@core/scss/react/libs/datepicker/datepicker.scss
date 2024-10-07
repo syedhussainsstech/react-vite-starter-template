@@ -1,0 +1,65 @@
+@import "react-datepicker/dist/react-datepicker.css";
+@import '../../../base/bootstrap-extended/include'; // Bootstrap includes
+@import '../../../base/components/include'; // Components includes
+
+
+.react-datepicker-wrapper {
+    width: 100%;
+    .react-datepicker__input-container .react-datepicker__calendar-icon {
+        right: 5px;
+        top: 5px;
+    }
+    .react-datepicker__view-calendar-icon input {
+        padding: 0.571rem 1rem;
+    }
+}
+
+.react-datepicker__tab-loop {
+    .react-datepicker__header {
+        padding: 12px 0;
+    }
+    .react-datepicker__navigation {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+.react-datepicker__month .react-datepicker__month-text, 
+.react-datepicker__month .react-datepicker__quarter-text {
+    top: 5px;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+.react-datepicker-popper {
+    .react-datepicker__day--today, 
+    .react-datepicker__month-text--today, 
+    .react-datepicker__quarter-text--today, 
+    .react-datepicker__year-text--today {
+        background-color: #d9ecff;
+        border-radius: 4px;
+    }
+    
+    .react-datepicker__navigation {
+        color: $body-color
+    }
+
+    .react-datepicker__day--selected, 
+    .react-datepicker__day--in-selecting-range, 
+    .react-datepicker__day--in-range, 
+    .react-datepicker__month-text--selected, 
+    .react-datepicker__month-text--in-selecting-range, 
+    .react-datepicker__month-text--in-range, 
+    .react-datepicker__quarter-text--selected, 
+    .react-datepicker__quarter-text--in-selecting-range, 
+    .react-datepicker__quarter-text--in-range, 
+    .react-datepicker__year-text--selected, 
+    .react-datepicker__year-text--in-selecting-range, 
+    .react-datepicker__year-text--in-range,
+    .react-datepicker__day--keyboard-selected, 
+    .react-datepicker__month-text--keyboard-selected, 
+    .react-datepicker__quarter-text--keyboard-selected, 
+    .react-datepicker__year-text--keyboard-selected {
+        background-color: $primary;
+        color: $white;
+    }
+}

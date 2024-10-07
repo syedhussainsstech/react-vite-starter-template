@@ -7,6 +7,10 @@
         overflow-y: auto;
     }
 }
+.react-bootstrap-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
 
 .react-bootstrap-table-pagination {
     padding-left: 1rem;
@@ -35,7 +39,7 @@
 }
 .shadow-none {
     .react-bootstrap-table {
-        box-shadow: $box-shadow;
+        box-shadow: 'none';
         border-radius: $card-border-radius;
         .table {
             tbody {
@@ -44,6 +48,7 @@
         }
     }
 }
+
 .react-bootstrap-table {
     .table {
         // -moz-user-select: -moz-none;
@@ -61,9 +66,15 @@
         }
         tr {
             &.selected {
-                background-color: $table-hover-bg;
+                --bs-table-striped-bg: rgba(68, 132, 206, 0.08) !important;
+                --bs-table-bg: rgba(68, 132, 206, 0.08) !important;
+                --bs-table-bg-type: rgba(68, 132, 206, 0.08) !important;
+                --bs-table-accent-bg: rgba(68, 132, 206, 0.08) !important;
+            // td {
+            //         background-color: $table-hover-bg !important;
+            //     }
             }
-            th {
+            th { 
                 cursor: pointer;
                 background-color: transparent !important;
                 font-weight: 600;
@@ -71,6 +82,7 @@
                 font-size: 14px;
             }
             td,
+          
             th {
                 // font-size: $table-th-font-size;
                 padding: $table-cell-padding-y $font-size-base;
@@ -111,6 +123,7 @@
                             background-image: $form-select-indicator;
                             background-repeat: no-repeat;
                             background-size: $form-select-bg-size;
+                            background-position: $form-select-bg-position;
                             text-transform: capitalize;
                         }
                     }
@@ -141,6 +154,10 @@
                     opacity: 0.4;
                 }
             }
+        }
+        // Apply custom styles
+        &.table-striped > tbody > tr:nth-of-type(odd) {
+            --bs-table-striped-bg: rgba(75, 70, 92, 0.08);
         }
     }
     + .react-bootstrap-table-pagination {
@@ -186,8 +203,58 @@
                 }
             }
         }
+    }+ .react-bootstrap-table-pagination {
+        .pagination {
+            margin-bottom: 0;
+            .page-item:first-child {
+                .page-link {
+                    border-radius: $pagination-custom-border-radius;
+                    margin-right: .5rem;
+                }
+                + .page-item {
+                    .page-link {
+                        border-top-left-radius: $pagination-custom-border-radius;
+                        border-bottom-left-radius: $pagination-custom-border-radius;
+                    }
+                }
+                &:not(.disabled) {
+                    .page-link {
+                        background-color: #e4e4e4;
+                    }
+                }
+            }
+            .page-item:last-child {
+                .page-link {
+                    border-radius: $pagination-custom-border-radius;
+                    margin-left: .5rem;
+                }
+                &:not(.disabled) {
+                    .page-link {
+                        background-color: #e4e4e4;
+                    }
+                }
+            }
+            .page-item:nth-last-child(2) {
+                .page-link {
+                    border-top-right-radius: $pagination-custom-border-radius;
+                    border-bottom-right-radius: $pagination-custom-border-radius;
+                }
+            }
+            .page-item.active {
+                .page-link {
+                    border-radius: $pagination-custom-border-radius;
+                }
+            }
+        }
     }
     .table.bg-default-table {
+        thead {
+            background: #ffffff;
+        }
+        border: 1px solid #ebe9f1;
+    }
+    .table.therapistAssignment-details-table {
+        --bs-table-bg: 'transparent';
         border: 1px solid $border-color;
         thead {
             background: #ffffff;
@@ -201,7 +268,7 @@ body:is(.dark-layout) {
         .table {
             tr {
                 &.selected {
-                    background-color: $theme-dark-body-bg;
+                    // background-color: $theme-dark-body-bg;
                 }
                 th {
                     &.sortable {
@@ -236,4 +303,109 @@ body:is(.dark-layout) {
 }
 .react-bs-table-no-data {
     text-align: center;
+}
+
+.newStyleTableClientProfile {
+    th{
+        white-space: nowrap;
+    }
+    td{
+        white-space: nowrap;
+    }
+    input{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .mb-3{ 
+        margin:0 !important;
+    }
+    .sr-only {
+        display: none;
+    }
+    .select-filter {
+        color: #b9b9c3;
+    }
+    .custom-datefilter-class{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 5px;
+        .custom-comparator-class{
+            padding: 6px 10px ;
+            margin-top: 10px;
+            font-size: 13px;
+            width: 32px;
+        }
+        .custom-date-class,.select-filter {
+            padding: 6px 10px ;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+    }
+}
+.popover-arrow::after  {
+    border-left-color: #115FAA !important;
+}
+
+.selectionComp {
+    width: 300px;
+    border-radius:16px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    padding:10px;
+    
+    .mb-3 { 
+        margin:.2rem !important;
+    }
+    Label {
+        display: initial;
+        margin-left: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        letter-spacing: 0.4300000071525574px;
+        text-align: left;
+    }
+    .btn {
+        border-color: none;
+        width: 65px;
+        height:28px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px 0px #A5A3AE4D;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.4300000071525574px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-cancel {
+        background: #FC848F !important;
+        border: none;
+    }
+    .btn-primary {
+        background-color: #115FAA !important;
+        border: none;
+    }
+    .btn-unChecked {
+        background-color: silver !important;
+        border: none;
+    }
+}
+.cs-popover {
+    .popover {
+        --bs-popover-max-width: 300px
+    }
+}
+@media only screen and (max-width: 575px) {
+    .react-bootstrap-table-pagination > .col-md-6:first-child {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        align-items: center;
+    }
+    .react-bootstrap-table-pagination-list {
+        display: flex;
+        justify-content: center;
+    }
 }

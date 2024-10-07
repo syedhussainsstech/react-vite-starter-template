@@ -16,7 +16,7 @@ const PrivateRoute = ({ children, route }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
 
   // ** Get components from Redux state
-  // const components = useSelector((state) => state.permission.components);
+  const components = useSelector((state) => state.permission.components);
   // const state = useSelector((state) => state);
 
   // useEffect(() => {
@@ -31,44 +31,29 @@ const PrivateRoute = ({ children, route }) => {
     let action = null;
     let resource = null;
     let restrictedRoute = false;
-    
+
     if (route.meta) {
-      action = route.meta.action
-      resource = route.meta.resource
-      restrictedRoute = route.meta.restricted
+      action = route.meta.action;
+      resource = route.meta.resource;
+      restrictedRoute = route.meta.restricted;
     }
     if (!user) {
-      return <Navigate to='/login' />
+      return <Navigate to="/login" />;
     }
-    if (user && restrictedRoute) {
-      return <Navigate to='/' />
+    // if (user && restrictedRoute) {
+    //   return <Navigate to='/' />
+    // }
+    if (
+      user &&
+      restrictedRoute &&
+      components.length &&
+      !components.includes(resource)
+    ) {
+      return <Navigate to="/auth/not-auth" />;
     }
-    if (user && restrictedRoute && (user.role === 'therapist' || user.role === 'admin' || user.role === 'superadmin')) {
-      return <Navigate to='/access-control' />
+    if (user && !ability.can(action || "read", resource)) {
+      return <Navigate to="/auth/not-auth" replace />;
     }
-    if (user && !ability.can(action || 'read', resource)) {
-      return <Navigate to='/misc/not-authorized' replace />
-    }
-
-    // if (route.meta) {
-    //   action = route.meta.action;
-    //   resource = route.meta.resource;
-    //   restrictedRoute = route.meta.restricted;
-    // }
-    // if (!user) {
-    //   return <Navigate to="/login" />;
-    // }
-    // if (
-    //   user &&
-    //   restrictedRoute &&
-    //   components.length &&
-    //   !components.includes(resource)
-    // ) {
-    //   return <Navigate to="/auth/not-auth" />;
-    // }
-    // if (user && !ability.can(action || "read", resource)) {
-    //   return <Navigate to="/auth/not-auth" replace />;
-    // }
   }
 
   return (

@@ -12,6 +12,7 @@ const AppCard = ({
   noShadow,
   noBg,
   open,
+  noMargin,
 }) => {
   const [isOpen, setIsOpen] = useState(open);
   return (
@@ -20,6 +21,7 @@ const AppCard = ({
         className={classNames({
           "shadow-none": noShadow,
           "bg-transparent": noBg,
+          "m-0": noMargin
         })}
       >
         {title ? (
@@ -56,6 +58,7 @@ AppCard.propTypes = {
   open: PropTypes.bool,
   noShadow: PropTypes.bool,
   noBg: PropTypes.bool,
+  noMargin: PropTypes.bool
 };
 
 export default AppCard;

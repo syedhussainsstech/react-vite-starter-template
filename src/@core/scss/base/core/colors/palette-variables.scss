@@ -90,6 +90,18 @@ $danger-color: (
   'darken-4': darken($danger, 20%)
 );
 
+$pending-color: (
+  'lighten-4': lighten($pending, 20%),
+  'lighten-3': lighten($pending, 15%),
+  'lighten-2': lighten($pending, 10%),
+  'lighten-1': lighten($pending, 5%),
+  'base': $pending,
+  'darken-1': darken($pending, 5%),
+  'darken-2': darken($pending, 10%),
+  'darken-3': darken($pending, 15%),
+  'darken-4': darken($pending, 20%)
+);
+
 $colors: (
   'white': $white-color,
   'black': $black-color,
@@ -100,5 +112,6 @@ $colors: (
   'success': $success-color,
   'info': $info-color,
   'warning': $warning-color,
-  'danger': $danger-color
+  'danger': $danger-color,
+  'pending': $pending-color
 );

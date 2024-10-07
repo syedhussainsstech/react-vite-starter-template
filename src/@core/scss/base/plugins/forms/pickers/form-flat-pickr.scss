@@ -167,8 +167,19 @@
 .flatpickr-input[readonly],
 .flatpickr-input ~ .form-control[readonly],
 .flatpickr-human-friendly[readonly] {
-  background-color: inherit;
   opacity: 1 !important;
+  & + .input-group-text {
+    z-index: 1 !important;
+    & > svg {
+      stroke: rgb(191, 191, 192);
+    }
+  }
+}
+
+.flatpickr-input[readonly][disabled],
+.flatpickr-input ~ .form-control[readonly][disabled],
+.flatpickr-human-friendly[readonly][disabled] {
+  background-color: inherit;
 }
 
 .flatpickr-weekdays {
@@ -190,5 +201,14 @@
     span {
       display: none;
     }
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .input-group.input-group-merge input.form-control.flatpickr-input.flatpickr-mobile {
+    padding: 0.571rem 1rem;
+    margin: 0;
+    border: 1px solid rgb(216, 214, 222);
+    border-radius: 0.357rem !important;
   }
 }

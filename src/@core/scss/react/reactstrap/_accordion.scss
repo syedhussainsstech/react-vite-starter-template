@@ -5,6 +5,8 @@
 }
 
 // Dark Layout
-.accordion .accordion-body {
-  color: $theme-dark-body-color;
+.dark-layout {
+  .accordion .accordion-body {
+    color: $theme-dark-body-color;
+  }
 }

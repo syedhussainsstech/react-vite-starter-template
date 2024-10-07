@@ -14,16 +14,23 @@ const AppRadio = ({
   setValue,
   inline,
   value,
+  onChange,
   ...rest
 }) => {
   const changeEvent = (e, data) => {
-    if (required) setValue(name, data, { shouldValidate: true })
-    else setValue(name, data)
+    if (required) {
+      setValue(name, data, { shouldValidate: true })
+      onChange ? onChange(data) : null
+    }
+    else {
+      setValue(name, data)
+      onChange ? onChange(data) : null
+    }
   }
 
   return (
     <>
-      {label ? (<Label>{label} {required ? <small className="text-danger">*</small> : null}</Label>) : null}
+      {label ? (<Label className="mb-75">{label} {required ? <small className="text-danger">*</small> : null}</Label>) : null}
       <Controller
         render={({
           field,
@@ -38,7 +45,7 @@ const AppRadio = ({
                     {...field}
                     type="radio"
                     name={name}
-                    id={data}
+                    id={`${name}-${data}`}
                     checked={field.value === data ? true : false}
                     onChange={(e) => {
                       field.onChange(e)
@@ -47,7 +54,7 @@ const AppRadio = ({
                     value={data}
                     invalid={(isTouched || isDirty || error) && invalid}
                   />
-                  <Label check htmlFor={data}>
+                  <Label check htmlFor={`${name}-${data}`}>
                     {data}
                   </Label>
                 </FormGroup>
@@ -74,7 +81,8 @@ AppRadio.propTypes = {
   options: PropTypes.array.isRequired,
   setValue: PropTypes.any,
   inline: PropTypes.bool,
-  value: PropTypes.any
+  value: PropTypes.any,
+  onChange: PropTypes.func
 }
 
 export default AppRadio

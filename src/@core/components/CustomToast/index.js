@@ -8,7 +8,7 @@ import AppBadge from "@components/Badges";
 const CustomToast = ({ type, icon, text, close }) => {
   return (
     <div className="w-100 d-flex align-items-center justify-content-between">
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center me-1">
         {icon && (
           <AppBadge color={type} light className="toast-badge">
             {type === "info" && <Info />}
@@ -17,7 +17,7 @@ const CustomToast = ({ type, icon, text, close }) => {
             {type === "danger" && <AlertTriangle />}
           </AppBadge>
         )}
-        <div className="ms-50">{text}</div>
+        <div className="ms-75">{text}</div>
       </div>
       {close && <X size="18" onClick={close} style={{ cursor: "pointer" }} />}
     </div>

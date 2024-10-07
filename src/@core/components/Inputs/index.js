@@ -206,6 +206,7 @@ AppInput.propTypes = {
     "tel",
     "password",
     "select",
+    "checkbox"
   ]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

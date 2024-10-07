@@ -18,6 +18,7 @@ $green: #05cd99 !default; //$success
 $blue: #00cfe8 !default; //$info
 $orange: #fa9148 !default; //$warning
 $red: #fa4858 !default; //$danger
+$yellow: #F6B816 !default;
 
 $primary: $purple !default;
 $secondary: #82868b !default;
@@ -27,6 +28,7 @@ $info: $blue !default;
 $warning: $orange !default;
 $light: $gray-50 !default;
 $dark: #4b4b4b !default;
+$pending: $yellow !default;
 
 $min-contrast-ratio: 3 !default;
 
@@ -94,7 +96,7 @@ $spacers: map-merge(
 // Body
 //
 // Settings for the `<body>` element.
-$body-bg: #f8f8f8 !default;
+$body-bg: #F0F5FA !default;
 $body-color: #4F4E53 !default;
 
 // Links
@@ -325,9 +327,10 @@ $input-group-addon-bg: $white !default;
 
 $form-select-indicator-padding: 1rem !default; // Extra padding for background-image
 $form-select-disabled-bg: $input-disabled-bg !default;
-$form-select-bg-size: 15px 14px !default; // In pixels because image dimensions
+$form-select-bg-size: 10px 9px !default; // In pixels because image dimensions
 $form-select-indicator-color: $input-border-color !default;
-$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='#{$form-select-indicator-color}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'><polyline points='6 9 12 15 18 9'></polyline></svg>") !default;
+$form-select-bg-position: 96% 50% !default;
+$form-select-indicator: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E") !default;
 
 // $form-select-feedback-icon-padding-end: $form-select-padding-x * 2.5 + $form-select-indicator-padding !default;
 // $form-select-feedback-icon-position:    center right $form-select-indicator-padding !default;

@@ -51,7 +51,7 @@ const AppBadge = ({
 }
 
 AppBadge.propTypes = {
-  color: PropTypes.oneOf(["primary", "secondary", "success", "danger", "info", "warning", "dark"]).isRequired,
+  color: PropTypes.oneOf(["primary", "secondary", "success", "danger", "info", "warning", "dark", "pending"]).isRequired,
   light: PropTypes.bool,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,

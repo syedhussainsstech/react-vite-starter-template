@@ -13,7 +13,9 @@ const AppOffCanvas = ({
   onOpened,
   unmountOnClose,
   scroll,
-  direction
+  direction,
+  className,
+  style,
 }) => {
   return (
     <Offcanvas
@@ -27,6 +29,8 @@ const AppOffCanvas = ({
       unmountOnClose={unmountOnClose}
       scrollable={scroll ?? false}
       direction={direction}
+      style={style}
+      className={className}
     >
       <OffcanvasHeader toggle={() => setOpen(!open)}>{title}</OffcanvasHeader>
       <OffcanvasBody>{children}</OffcanvasBody>
@@ -35,6 +39,7 @@ const AppOffCanvas = ({
 }
 
 AppOffCanvas.propTypes = {
+  className: PropTypes.string,
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
   title: PropTypes.string,
@@ -46,7 +51,8 @@ AppOffCanvas.propTypes = {
   onOpened: PropTypes.func,
   unmountOnClose: PropTypes.bool,
   scroll: PropTypes.bool,
-  direction: PropTypes.oneOf(["start", "end", "bottom", "top"])
+  direction: PropTypes.oneOf(["start", "end", "bottom", "top"]),
+  style: PropTypes.oneOf([PropTypes.object, PropTypes.string])
 }
 
 export default AppOffCanvas

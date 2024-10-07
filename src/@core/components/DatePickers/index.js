@@ -10,6 +10,7 @@ import "../../../@core/scss/react/libs/flatpickr/flatpickr.scss";
 
 // ** Icons
 import { Calendar, Clock } from "react-feather";
+import { getDate, getDay } from "date-fns";
 
 const AppDatePicker = ({
   label,
@@ -29,6 +30,10 @@ const AppDatePicker = ({
   value,
   error,
   tooltip,
+  disabled,
+  disabledDay,
+  mode = 'single',
+  whiteBackground,
   ...rest
 }) => {
   return (
@@ -49,6 +54,7 @@ const AppDatePicker = ({
           control={control}
           render={({ field }) => (
             <Flatpickr
+              disabled={disabled}
               {...rest}
               {...field}
               className="form-control flatpickr-input"
@@ -59,11 +65,23 @@ const AppDatePicker = ({
                 }
               }}
               options={{
+                ...(mode && { mode: mode }),
                 dateFormat: formatDate ?? "Y-m-d",
                 minDate: minDate ?? undefined,
                 maxDate: maxDate ?? undefined,
                 enableTime: enableTime ?? false,
                 noCalendar: noCalendar ?? false,
+                disable: [function(date) {
+                  return getDay(date) === disabledDay
+                }]
+              }}
+              style={{
+                border: "1px solid #d8d6de",
+                borderRadius: "0.357rem",
+                ...(disabled
+                  ? { backgroundColor: "#efefef", cursor: "not-allowed" }
+                  : {}),
+                ...(whiteBackground ? { "backgroundColor": "#fff" } : {}),  
               }}
             />
           )}
@@ -75,8 +93,14 @@ const AppDatePicker = ({
             right: 0,
             top: 0,
             height: "100%",
-            zIndex: -1,
+            //zIndex: -1,
             paddingRight: 10,
+            ...(disabled
+              ? {
+                backgroundColor: "#efefef",
+                zIndex: 1,
+              }
+              : {}),
           }}
         >
           {enableTime ? (
@@ -95,11 +119,13 @@ const AppDatePicker = ({
 
 // ** PropTypes
 AppDatePicker.propTypes = {
+  mode: PropTypes.oneOf(['single', 'range', 'multiple', 'time']),
   label: PropTypes.string,
   onChangeEvent: PropTypes.func,
   onKeyPressEvent: PropTypes.func,
   onKeyUpEvent: PropTypes.func,
   name: PropTypes.string.isRequired,
+  disabled: PropTypes.any,
   required: PropTypes.bool,
   error: PropTypes.any,
   icon: PropTypes.node,
@@ -112,6 +138,7 @@ AppDatePicker.propTypes = {
   formatDate: PropTypes.oneOfType([PropTypes.string]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   tooltip: PropTypes.bool,
+  disabledDay: PropTypes.number
 };
 
 export default AppDatePicker;

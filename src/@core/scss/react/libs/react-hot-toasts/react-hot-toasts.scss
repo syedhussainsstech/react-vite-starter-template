@@ -3,6 +3,7 @@
 @import '../../../base/core/colors/palette-variables';
 
 .react-hot-toast {
+  max-width: 100%;
   font-size: 1rem;
   color: $body-color;
   letter-spacing: 0.14px;

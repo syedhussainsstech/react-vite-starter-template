@@ -1,5 +1,6 @@
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const AppModals = ({
   open,
@@ -18,13 +19,14 @@ const AppModals = ({
   onOpened,
   unmountOnClose,
   headerClass,
+  className
 }) => {
   return (
     <Modal
       toggle={close}
       isOpen={open}
       size={size}
-      modalClassName={`modal-${type}`}
+      modalClassName={classNames(`modal-${type} ${className}`,)}
       fullscreen={fullscreen ?? false}
       centered={center ?? false}
       keyboard={keyboard ?? true}
@@ -48,7 +50,7 @@ AppModals.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
-  size: PropTypes.oneOf(["sm", "lg"]),
+  size: PropTypes.oneOf(["sm", "lg", "xl"]),
   type: PropTypes.oneOf([
     "primary",
     "secondary",
@@ -69,6 +71,7 @@ AppModals.propTypes = {
   unmountOnClose: PropTypes.bool,
   headerClass: PropTypes.string,
   close: PropTypes.func,
+  className: PropTypes.string
 };
 
 export default AppModals;

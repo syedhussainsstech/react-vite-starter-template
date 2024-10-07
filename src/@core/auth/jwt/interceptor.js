@@ -32,7 +32,7 @@ const ToastErrorHandler = (data) => {
     duration: 5000,
     position: "top-center",
     style: {
-      backgroundColor: "red",
+      backgroundColor: "#fa4858",
     },
   });
 };
@@ -143,9 +143,10 @@ axiosInstance.interceptors.response.use(
     } else if (error.response.data.StatusCode === 400) {
       ToastErrorHandler(error.response.data.Message);
       return Promise.reject(error);
-    }
-    // Handle other error cases as needed
-    else {
+    } else if (error.response.data.StatusCode === 404) {
+      ToastErrorHandler(error.response.data.Message);
+      return Promise.reject(error);
+    } else {
       // Handle other error cases as needed
       console.log(error);
 

@@ -22,6 +22,7 @@ const AppCheckbox = ({
   inline,
   value,
   hint,
+  onChange,
   ...rest
 }) => {
   // Checkbox States
@@ -30,6 +31,8 @@ const AppCheckbox = ({
   // On Change Event
   const changeEvent = (e, data) => {
     let val = actualValue
+    if (onChange) onChange(e.target.checked, data)
+
     if (e.target.checked) {
       if (!actualValue.includes(data)) {
         val = [...val, data]
@@ -129,6 +132,10 @@ const AppCheckbox = ({
                   bsSize={size}
                   checked={!!field.value}
                   invalid={(isTouched || isDirty || error) && invalid}
+                  onChange={(e) => {
+                    field.onChange(e)
+                    if (onChange) onChange(e)
+                  }}
                 />
                 {isSwitchIcon ? <CustomLabel htmlFor={id} /> : null}
                 <Label check htmlFor={id} className='form-check-label'>
